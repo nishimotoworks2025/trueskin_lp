@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TrueSkin | 顔写真でAIが肌年齢を診断</title>
+  <meta name="description" content="TrueSkinは顔写真から肌年齢・肌状態を分析し、詳細分析と改善チャートで毎日のスキンケア継続を支えるアプリです。">
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" fill="%23f1d2dc"/><path d="M152 172h208v64H280v176h-48V236h-80z" fill="white"/></svg>'>
+  <style>
+    :root{
+      --bg:#f5f0f2;
+      --pink-100:#f3d6e2;
+      --pink-200:#efc6d7;
+      --pink-300:#d88fb2;
+      --pink-400:#b46a8b;
+      --wine:#8d3f62;
+      --line:#d8cdd2;
+      --text:#2e2429;
+      --muted:#6b5a63;
+      --surface:#f7f2f4;
+      --white:#fff;
+      --shadow:0 14px 30px rgba(80,42,61,.12);
+      --r-lg:26px;
+      --r-md:18px;
+      --r-sm:12px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.62;
+    }
+    a{color:inherit;text-decoration:none}
+    .shell{width:min(calc(100% - 32px),var(--max));margin:0 auto}
+
+    .header{position:sticky;top:0;z-index:20;background:rgba(245,240,242,.82);backdrop-filter:blur(10px);border-bottom:1px solid #e2d7dc}
+    .header .shell{height:74px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:inline-flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.04em}
+    .logo{width:40px;aspect-ratio:1;border-radius:10px;background:#f1d2dc;color:#fff;display:grid;place-items:center;font-size:31px;font-weight:900;line-height:1;box-shadow:inset 0 0 0 1px rgba(255,255,255,.44)}
+    .nav{display:flex;gap:18px;font-size:14px;color:var(--muted)}
+
+    .hero{padding:42px 0 30px}
+    .hero-wrap{
+      border-radius:var(--r-lg);
+      background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.6),transparent 32%),
+        radial-gradient(circle at 65% 34%,rgba(255,255,255,.4),transparent 24%),
+        linear-gradient(135deg,#f8dde6,#f6d2de 42%,#f5d4df);
+      border:1px solid #ead7df;
+      box-shadow:var(--shadow);
+      padding:24px;
+    }
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;align-items:center}
+    .hero h1{margin:0 0 12px;font-size:clamp(38px,6.2vw,78px);line-height:1.13;letter-spacing:-.03em}
+    .ribbon{display:inline-block;margin:6px 0 14px;padding:10px 20px;border-radius:999px;font-size:clamp(24px,3vw,50px);font-weight:800;color:#fff;background:linear-gradient(135deg,#ef9dc0,#d86ea0);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+    .hero p{margin:0;font-size:clamp(26px,2.8vw,52px);font-weight:700;letter-spacing:-.01em}
+
+    .phone{
+      justify-self:end;
+      width:min(100%,340px);
+      border-radius:42px;
+      border:7px solid #4b4a52;
+      background:#f3e8ed;
+      box-shadow:0 12px 24px rgba(31,17,24,.2);
+      padding:14px;
+    }
+    .screen{border-radius:30px;background:#ede3e7;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+    .status{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-size:12px;color:#3f3440;background:#dfc4d2}
+    .topbar{display:flex;justify-content:space-between;align-items:center;padding:12px;font-size:13px;color:#4b3b47}
+    .pro{border:1px solid #b46a8b;color:#b46a8b;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:700}
+    .result{margin:0 12px 12px;border:1px solid #ccb8c1;border-radius:14px;padding:10px;background:#efe6ea}
+    .result .age{display:inline-block;padding:6px 10px;border-radius:999px;background:#e9d6de;font-weight:800}
+    .radar{height:112px;margin:8px 0;border-radius:10px;background:radial-gradient(circle at 50% 50%,rgba(146,95,122,.22),transparent 45%),linear-gradient(transparent 49%,rgba(87,69,79,.18) 50%,transparent 51%),linear-gradient(90deg,transparent 49%,rgba(87,69,79,.18) 50%,transparent 51%),#f7f2f4;border:1px solid #cdbcc4}
+    .btn-main,.btn-sub{height:30px;border-radius:999px;font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:7px}
+    .btn-main{background:#8b4668;color:#fff}
+    .btn-sub{border:1px solid #bdaab3;color:#684f5d;background:#f7f1f4}
+    .tab{display:grid;grid-template-columns:repeat(4,1fr);padding:10px 10px 12px;font-size:10px;color:#6f5e66;text-align:center}
+
+    section{padding:28px 0}
+    .head{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:16px}
+    h2{margin:0;font-size:clamp(30px,3.8vw,48px);line-height:1.15;letter-spacing:-.02em}
+    .sub{margin:0;max-width:620px;color:var(--muted)}
+
+    .grid-3,.grid-2{display:grid;gap:16px}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .card{background:var(--surface);border:1px solid #ddd2d8;border-radius:22px;padding:20px;box-shadow:var(--shadow)}
+    .badge{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:14px;background:#ecd7e0;color:var(--wine);font-weight:800;margin-bottom:12px}
+    .card h3{margin:0 0 8px;font-size:24px;line-height:1.25}
+    .card p{margin:0;color:var(--muted)}
+
+    .app-section{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .app-card{background:var(--surface);border:1px solid #ddd2d8;border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+    .app-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .app-title{font-size:36px;font-weight:800;line-height:1.15}
+    .mini-pro{border:2px solid #b479a2;border-radius:999px;padding:8px 18px;color:#9e5c87;font-weight:800}
+
+    .face-box{height:280px;border-radius:14px;background:linear-gradient(180deg,#8390b0,#6f7ba3);position:relative;overflow:hidden}
+    .face-box::before{content:"";position:absolute;inset:22px;background:radial-gradient(circle at 50% 35%,#efd6c6 0,#ddbeaa 36%,#b89884 75%);border-radius:18px;opacity:.9}
+    .zone{position:absolute;left:18%;top:16%;width:64%;height:26%;border:5px solid #fff;border-radius:90px 90px 55px 55px;display:grid;place-items:center;color:#fff;font-size:42px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.24)}
+    .desc{margin-top:12px;font-size:29px;font-weight:800}
+    .txt{margin-top:5px;color:#5f5158}
+    .score-card{margin-top:14px;border:2px solid #9a5b76;border-radius:20px;padding:14px;background:#f2eaee}
+    .score-top{display:flex;justify-content:space-between;align-items:center;font-size:34px;font-weight:800}
+    .pill-score{font-size:24px;background:#2f8fda;color:#fff;padding:6px 14px;border-radius:999px}
+    .bar{height:12px;border-radius:999px;background:#e4d8de;overflow:hidden;margin:10px 0}
+    .bar>i{display:block;height:100%;width:89%;background:#2586d8}
+
+    .chart{height:300px;border:1px solid #dbced4;border-radius:16px;background:
+      linear-gradient(transparent 19%,rgba(125,102,114,.24) 20%,transparent 21%),
+      linear-gradient(transparent 39%,rgba(125,102,114,.24) 40%,transparent 41%),
+      linear-gradient(transparent 59%,rgba(125,102,114,.24) 60%,transparent 61%),
+      linear-gradient(transparent 79%,rgba(125,102,114,.24) 80%,transparent 81%),
+      #f5eef1;position:relative}
+    .chart svg{position:absolute;inset:0;width:100%;height:100%}
+    .chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+    .chip{padding:10px 16px;border-radius:14px;border:2px solid #cfbec7;background:#f6eef2;font-weight:700}
+    .chip.active{background:#f2d8e4;border-color:#f2d8e4}
+    .comment{margin-top:14px;border-radius:18px;background:#f4ebef;border:1px solid #ddcfd6;padding:16px}
+    .comment h4{margin:0 0 8px;font-size:34px;display:flex;justify-content:space-between;align-items:center}
+    .comment ul{margin:0;padding-left:20px}
+
+    .flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .step{background:var(--surface);border:1px solid #ddd2d8;border-radius:22px;padding:20px;box-shadow:var(--shadow)}
+    .step small{color:#8d3f62;font-weight:800;letter-spacing:.08em}
+    .step h3{margin:8px 0;font-size:24px}
+    .step p{margin:0;color:var(--muted)}
+
+    .cta{border-radius:24px;padding:28px;background:linear-gradient(140deg,#8d3f62,#b46688);color:#fff;box-shadow:var(--shadow)}
+    .cta p{color:rgba(255,255,255,.9)}
+    .cta .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:999px;font-weight:800;border:1px solid transparent}
+    .btn.primary{background:#fff;color:#8d3f62}
+    .btn.ghost{border-color:rgba(255,255,255,.42);background:rgba(255,255,255,.08)}
+
+    footer{padding:24px 0 38px;color:var(--muted);font-size:14px}
+    footer .shell{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+    @media (max-width:980px){
+      .hero-grid,.app-section,.grid-3,.grid-2,.flow{grid-template-columns:1fr}
+      .phone{justify-self:center}
+      .nav{display:none}
+    }
+    @media (max-width:680px){
+      .hero p{font-size:clamp(20px,6vw,33px)}
+      .ribbon{font-size:clamp(22px,7vw,34px)}
+      .app-title{font-size:28px}
+      .desc,.score-top,.comment h4{font-size:26px}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="shell">
+      <a class="brand" href="#top" aria-label="TrueSkin">
+        <span class="logo" aria-hidden="true">T</span>
+        <span>TrueSkin</span>
+      </a>
+      <nav class="nav">
+        <a href="#feature">特徴</a>
+        <a href="#screens">画面</a>
+        <a href="#flow">使い方</a>
+        <a href="#contact">導入相談</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-wrap">
+        <div class="hero-grid">
+          <div>
+            <h1>顔写真でAIが<br>肌年齢を診断</h1>
+            <div class="ribbon">インストール後直ぐ判定</div>
+            <p>個人情報は使用しません。</p>
+          </div>
+          <div class="phone" aria-label="アプリホーム画面イメージ">
+            <div class="screen">
+              <div class="status"><span>20:29</span><span>◦ ◦ ◦</span></div>
+              <div class="topbar"><span>ホーム</span><span class="pro">PRO</span></div>
+              <div class="result">
+                <div class="age">☺ 肌年齢 17 歳</div>
+                <div class="radar"></div>
+                <div class="btn-main">撮影して診断する</div>
+                <div class="btn-sub">アルバムから選択</div>
+              </div>
+              <div class="tab"><span>ホーム</span><span>詳細</span><span>改善</span><span>履歴</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="feature">
+      <div class="shell">
+        <div class="head">
+          <h2>本物の画面体験に近いLP構成</h2>
+          <p class="sub">いただいた実機スクリーンに合わせて、配色・余白・カード形状・見出し構成を同じトーンで表現しています。</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="badge">01</div>
+            <h3>詳細分析</h3>
+            <p>Tゾーン/Uゾーンなど部位ごとのコメントとスコアを確認し、具体的な課題を把握できます。</p>
+          </article>
+          <article class="card">
+            <div class="badge">02</div>
+            <h3>改善チャート</h3>
+            <p>総合スコアや項目別推移をグラフ化し、スキンケアの手応えを時系列で確認できます。</p>
+          </article>
+          <article class="card">
+            <div class="badge">03</div>
+            <h3>継続利用導線</h3>
+            <p>ホーム → 詳細 → 改善・チャートへ自然に遷移でき、継続利用につながる導線です。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens">
+      <div class="shell">
+        <div class="head">
+          <h2>画面イメージ</h2>
+          <p class="sub">ご提示いただいた「詳細」「改善・チャート」画面をLP内の説明ブロックとして再現しています。</p>
+        </div>
+
+        <div class="app-section">
+          <article class="app-card">
+            <div class="app-head">
+              <div class="app-title">詳細</div>
+              <div class="mini-pro">PRO</div>
+            </div>
+            <div class="face-box">
+              <div class="zone">Tゾーン</div>
+            </div>
+            <div class="desc">Tゾーン</div>
+            <div class="txt">テカリや毛穴が目立ちやすいおでこ〜鼻筋のエリアです。日々の丁寧なケアが結果に直結します。</div>
+            <div class="score-card">
+              <div class="score-top"><span>Tゾーン</span><span class="pill-score">89点</span></div>
+              <div class="bar"><i></i></div>
+              <div>額から鼻筋にかけて非常に滑らかで、皮脂バランスが良好に保たれています。</div>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-head">
+              <div class="app-title">改善・チャート</div>
+              <div class="mini-pro">PRO</div>
+            </div>
+            <div class="chip-row">
+              <span class="chip active">✓ 総合スコア</span>
+              <span class="chip">水分量</span>
+              <span class="chip">キメ</span>
+              <span class="chip">シミ・くすみ</span>
+            </div>
+            <div class="chart">
+              <svg viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true">
+                <polyline points="50,98 300,116 550,78" fill="none" stroke="#8d3f62" stroke-width="5" />
+                <circle cx="50" cy="98" r="7" fill="#8d3f62"/>
+                <circle cx="300" cy="116" r="7" fill="#8d3f62"/>
+                <circle cx="550" cy="78" r="7" fill="#8d3f62"/>
+              </svg>
+            </div>
+            <div class="comment">
+              <h4><span>改善コメント</span><span style="font-size:18px;font-weight:700">2026/01/24 11:28</span></h4>
+              <ul>
+                <li>Tゾーンの赤み・ニキビ傾向が改善し、全体的にクリアな肌状態です。</li>
+                <li>高い保湿レベルを維持するため、セラミド配合ケアを継続してください。</li>
+                <li>摩擦を避けた洗顔習慣で、安定した状態をキープしましょう。</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow">
+      <div class="shell">
+        <div class="head">
+          <h2>使い方</h2>
+          <p class="sub">ホームで診断、詳細で部位分析、改善・チャートで経過確認。最短3ステップで続けられます。</p>
+        </div>
+        <div class="flow">
+          <article class="step"><small>STEP 01</small><h3>撮影して診断</h3><p>顔写真を撮影するだけで肌年齢とスコアを表示します。</p></article>
+          <article class="step"><small>STEP 02</small><h3>詳細で確認</h3><p>Tゾーン/Uゾーンなど部位別コメントで改善点を把握します。</p></article>
+          <article class="step"><small>STEP 03</small><h3>チャートで比較</h3><p>履歴チャートで前回との変化を比較し、ケアを最適化します。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="shell">
+        <div class="cta">
+          <h2 style="margin:0">TrueSkinの実画面トーンに合わせたLPを、このまま公開できます。</h2>
+          <p>本ページは <code>lp/index.html</code> 単体で動作します。CTA先・問い合わせ先のみ差し替えて運用開始できます。</p>
+          <div class="row">
+            <a class="btn primary" href="mailto:hello@example.com">問い合わせ先を設定する</a>
+            <a class="btn ghost" href="#top">上に戻る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div>TrueSkin Landing Page</div>
+      <div>Built as a standalone page in <code>lp/index.html</code></div>
+    </div>
+  </footer>
+</body>
+</html>
