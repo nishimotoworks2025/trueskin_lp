@@ -465,6 +465,61 @@
       background: linear-gradient(135deg, #fff8f9, #f8dbe4);
     }
 
+    .photo-card.usage-scene {
+      grid-template-columns: 1fr;
+      align-content: center;
+      justify-items: start;
+      padding: 34px;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(255, 255, 255, .62), transparent 28%),
+        linear-gradient(135deg, #fff8f9, #f8dbe4);
+    }
+
+    .usage-flow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .usage-flow span {
+      display: inline-grid;
+      place-items: center;
+      min-width: 74px;
+      height: 44px;
+      padding: 0 16px;
+      border-radius: 999px;
+      color: var(--rose-deep);
+      background: var(--white);
+      border: 1px solid rgba(181, 75, 112, .22);
+      font-weight: 900;
+      box-shadow: 0 10px 24px rgba(112, 52, 72, .10);
+    }
+
+    .usage-flow i {
+      width: 28px;
+      height: 1px;
+      background: rgba(181, 75, 112, .38);
+      position: relative;
+    }
+
+    .usage-flow i::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-top: 1px solid rgba(181, 75, 112, .62);
+      border-right: 1px solid rgba(181, 75, 112, .62);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .usage-scene .mock-copy {
+      max-width: 420px;
+    }
+
     .photo-caption {
       position: absolute;
       left: 24px;
@@ -637,6 +692,18 @@
       }
       .button { width: 100%; }
       .photo-card.mock-photo { grid-template-columns: 1fr; }
+      .usage-flow {
+        gap: 8px;
+      }
+      .usage-flow span {
+        min-width: 64px;
+        height: 38px;
+        padding: 0 12px;
+        font-size: 13px;
+      }
+      .usage-flow i {
+        width: 18px;
+      }
       .phone-screens { grid-template-columns: 1fr; }
       .photo-caption { left: 18px; right: 18px; bottom: 18px; }
       .photo-caption h3, .mock-copy h3 { font-size: 23px; }
@@ -706,16 +773,17 @@
               <p>いつもの洗顔後やスキンケア前に、顔写真から肌年齢をチェックできます。</p>
             </div>
           </article>
-          <article class="photo-card mock-photo">
-            <div class="mini-phone" aria-hidden="true">
-              <div class="mini-phone-screen">
-                <div class="face-frame"></div>
-                <div class="result-lines"><span></span><span></span><span></span></div>
-              </div>
+          <article class="photo-card mock-photo usage-scene">
+            <div class="usage-flow" aria-hidden="true">
+              <span>撮影</span>
+              <i></i>
+              <span>診断</span>
+              <i></i>
+              <span>記録</span>
             </div>
             <div class="mock-copy">
-              <h3>撮影、分析、履歴までアプリ内で完結。</h3>
-              <p>診断画面やグラフを見ながら、肌の状態を継続的に確認できます。</p>
+              <h3>毎日のスキンケア前に。</h3>
+              <p>洗顔後の肌状態を記録し、肌年齢や部位ごとの変化を少しずつ確認できます。</p>
             </div>
           </article>
         </div>
