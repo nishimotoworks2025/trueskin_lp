@@ -23,9 +23,9 @@
       --shadow: 0 24px 60px rgba(112, 52, 72, .18);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -35,10 +35,7 @@
       letter-spacing: 0;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .site-header {
       position: sticky;
@@ -98,9 +95,7 @@
       transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
 
-    .button:hover {
-      transform: translateY(-1px);
-    }
+    .button:hover { transform: translateY(-1px); }
 
     .button-primary {
       color: var(--white);
@@ -124,9 +119,7 @@
       pointer-events: none;
     }
 
-    .button-disabled:hover {
-      transform: none;
-    }
+    .button-disabled:hover { transform: none; }
 
     .ios-notice {
       margin-top: 18px;
@@ -186,11 +179,6 @@
       z-index: -1;
     }
 
-    .hero-panel {
-      max-width: 650px;
-      padding: 34px 0;
-    }
-
     .hero-inner {
       width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
@@ -200,10 +188,11 @@
       align-items: center;
     }
 
+    .hero-panel { max-width: 650px; padding: 34px 0; }
+
     .eyebrow {
       color: var(--rose-deep);
       font-weight: 700;
-      letter-spacing: 0;
       margin-bottom: 18px;
     }
 
@@ -344,19 +333,14 @@
       background: linear-gradient(170deg, transparent 48%, rgba(181, 75, 112, .25) 49%, rgba(181, 75, 112, .25) 51%, transparent 52%);
     }
 
-    section {
-      padding: 78px 0;
-    }
+    section { padding: 78px 0; }
 
     .container {
       width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
     }
 
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 34px;
-    }
+    .section-head { max-width: 760px; margin-bottom: 34px; }
 
     h2 {
       margin: 0;
@@ -375,6 +359,42 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
+    }
+
+    .feature {
+      min-height: 210px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 22px;
+      box-shadow: 0 12px 32px rgba(102, 54, 69, .08);
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #f8e3ea;
+      color: var(--rose-deep);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .feature h3,
+    .step h3 {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.4;
+    }
+
+    .feature p,
+    .step p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
     }
 
     .phone-screens {
@@ -442,8 +462,7 @@
       grid-template-columns: .72fr 1fr;
       padding: 26px;
       gap: 18px;
-      background:
-        linear-gradient(135deg, #fff8f9, #f8dbe4);
+      background: linear-gradient(135deg, #fff8f9, #f8dbe4);
     }
 
     .photo-caption {
@@ -454,17 +473,8 @@
       color: var(--white);
     }
 
-    .photo-caption h3 {
-      margin: 0;
-      font-size: 28px;
-      line-height: 1.25;
-    }
-
-    .photo-caption p {
-      margin: 10px 0 0;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, .86);
-    }
+    .photo-caption h3 { margin: 0; font-size: 28px; line-height: 1.25; }
+    .photo-caption p { margin: 10px 0 0; line-height: 1.8; color: rgba(255, 255, 255, .86); }
 
     .mini-phone {
       align-self: center;
@@ -507,93 +517,21 @@
       box-shadow: 0 0 0 999px rgba(181, 75, 112, .11);
     }
 
-    .result-lines {
-      display: grid;
-      gap: 6px;
-    }
+    .result-lines { display: grid; gap: 6px; }
+    .result-lines span { height: 8px; border-radius: 999px; background: #ead3d9; }
+    .result-lines span:nth-child(2) { width: 78%; background: #d69aaf; }
+    .mock-copy { align-self: center; }
+    .mock-copy h3 { margin: 0; font-size: 27px; line-height: 1.35; }
+    .mock-copy p { margin: 12px 0 0; color: var(--muted); line-height: 1.8; }
 
-    .result-lines span {
-      height: 8px;
-      border-radius: 999px;
-      background: #ead3d9;
-    }
+    .flow-hero-image { margin-top: 34px; }
 
-    .result-lines span:nth-child(2) {
-      width: 78%;
-      background: #d69aaf;
-    }
-
-    .mock-copy {
-      align-self: center;
-    }
-
-    .mock-copy h3 {
-      margin: 0;
-      font-size: 27px;
-      line-height: 1.35;
-    }
-
-    .mock-copy p {
-      margin: 12px 0 0;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .feature {
-      min-height: 210px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--white);
-      padding: 22px;
-      box-shadow: 0 12px 32px rgba(102, 54, 69, .08);
-    }
-
-    .feature-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      background: #f8e3ea;
-      color: var(--rose-deep);
-      font-weight: 900;
-      margin-bottom: 18px;
-    }
-
-    .feature h3,
-    .step h3 {
-      margin: 0;
-      font-size: 19px;
-      line-height: 1.4;
-    }
-
-    .feature p,
-    .step p {
-      margin: 12px 0 0;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 14px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-      counter-reset: steps;
-    }
-
-    .step {
-      padding: 0 0 0 18px;
-      border-left: 2px solid var(--rose-soft);
-      counter-increment: steps;
-    }
-
-    .step::before {
-      content: "0" counter(steps);
+    .flow-hero-image img {
       display: block;
-      color: var(--rose);
-      font-weight: 900;
-      margin-bottom: 10px;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 18px 42px rgba(102, 54, 69, .12);
     }
 
     .band {
@@ -624,24 +562,10 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .info-item:nth-child(2n) {
-      border-right: 0;
-    }
-
-    .info-item:nth-last-child(-n+2) {
-      border-bottom: 0;
-    }
-
-    .info-item span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      margin-bottom: 6px;
-    }
-
-    .info-item strong {
-      font-size: 15px;
-    }
+    .info-item:nth-child(2n) { border-right: 0; }
+    .info-item:nth-last-child(-n+2) { border-bottom: 0; }
+    .info-item span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .info-item strong { font-size: 15px; }
 
     .notice {
       border: 1px solid var(--line);
@@ -667,15 +591,8 @@
       text-underline-offset: 3px;
     }
 
-    .cta {
-      text-align: center;
-      padding: 86px 0 96px;
-    }
-
-    .cta p {
-      color: var(--muted);
-      line-height: 1.8;
-    }
+    .cta { text-align: center; padding: 86px 0 96px; }
+    .cta p { color: var(--muted); line-height: 1.8; }
 
     .footer {
       border-top: 1px solid var(--line);
@@ -693,124 +610,42 @@
       flex-wrap: wrap;
     }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 14px; }
 
     @media (max-width: 860px) {
-      .nav-links a:not(.button) {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 42px;
-      }
-
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-
-      .phone-wrap {
-        min-height: auto;
-        transform: none;
-      }
-
-      .features,
-      .steps,
-      .photo-strip,
-      .phone-screens,
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .features {
-        gap: 12px;
-      }
-
-      .feature {
-        min-height: auto;
-      }
-
-      .photo-card {
-        min-height: 300px;
-      }
-
-      .phone-screens {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .nav-links a:not(.button) { display: none; }
+      .hero { padding-top: 42px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+      .phone-wrap { min-height: auto; transform: none; }
+      .features, .photo-strip, .phone-screens, .info-grid { grid-template-columns: 1fr; }
+      .features { gap: 12px; }
+      .feature { min-height: auto; }
+      .photo-card { min-height: 300px; }
+      .phone-screens { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 540px) {
-      .nav {
-        width: min(100% - 24px, 1120px);
-      }
-
-      .brand {
-        font-size: 17px;
-      }
-
-      .nav .button {
-        min-height: 40px;
-        padding: 0 14px;
-        font-size: 13px;
-      }
-
-      .hero-inner,
-      .container,
-      .footer-inner {
-        width: min(100% - 24px, 1120px);
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
+      .nav { width: min(100% - 24px, 1120px); }
+      .brand { font-size: 17px; }
+      .nav .button { min-height: 40px; padding: 0 14px; font-size: 13px; }
+      .hero-inner, .container, .footer-inner { width: min(100% - 24px, 1120px); }
+      .hero-actions { flex-direction: column; }
       .hero::before {
         background:
           linear-gradient(180deg, rgba(255, 247, 249, .94) 0%, rgba(255, 247, 249, .90) 48%, rgba(255, 247, 249, .55) 100%),
           url("../assets/hero-scan.png") center top / cover no-repeat;
       }
-
-      .button {
-        width: 100%;
-      }
-
-      .photo-card.mock-photo {
-        grid-template-columns: 1fr;
-      }
-
-      .phone-screens {
-        grid-template-columns: 1fr;
-      }
-
-      .photo-caption {
-        left: 18px;
-        right: 18px;
-        bottom: 18px;
-      }
-
-      .photo-caption h3,
-      .mock-copy h3 {
-        font-size: 23px;
-      }
-
-      .info-list {
-        grid-template-columns: 1fr;
-      }
-
-      .info-item,
-      .info-item:nth-child(2n),
-      .info-item:nth-last-child(-n+2) {
+      .button { width: 100%; }
+      .photo-card.mock-photo { grid-template-columns: 1fr; }
+      .phone-screens { grid-template-columns: 1fr; }
+      .photo-caption { left: 18px; right: 18px; bottom: 18px; }
+      .photo-caption h3, .mock-copy h3 { font-size: 23px; }
+      .info-list { grid-template-columns: 1fr; }
+      .info-item, .info-item:nth-child(2n), .info-item:nth-last-child(-n+2) {
         border-right: 0;
         border-bottom: 1px solid var(--line);
       }
-
-      .info-item:last-child {
-        border-bottom: 0;
-      }
+      .info-item:last-child { border-bottom: 0; }
     }
   </style>
 </head>
@@ -836,38 +671,22 @@
         <div class="hero-panel">
           <p class="eyebrow">肌年齢診断AI・肌診断アプリ</p>
           <h1 id="hero-title">TrueSkin</h1>
-          <p class="hero-copy">
-            顔写真からAIが肌年齢を診断。部位ごとの分析、肌年齢の推移グラフ、過去の診断履歴で、毎日のスキンケアを見える化します。
-          </p>
+          <p class="hero-copy">顔写真からAIが肌年齢を診断。部位ごとの分析、肌年齢の推移グラフ、過去の診断履歴で、毎日のスキンケアを見える化します。</p>
           <div class="hero-actions">
             <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.nishimotoworks.trueskin&amp;hl=ja">Android版をインストール</a>
             <span class="button button-disabled" aria-disabled="true">iPhone版 リリース準備中</span>
             <a class="button button-secondary" href="#features">機能を見る</a>
           </div>
-          <div class="ios-notice">
-            <span>iOS</span>
-            iPhone版は現在リリース準備中です。公開までしばらくお待ちください。
-          </div>
-          <p class="store-note">
-            Android 7.0以上対応。
-          </p>
+          <div class="ios-notice"><span>iOS</span>iPhone版は現在リリース準備中です。公開までしばらくお待ちください。</div>
+          <p class="store-note">Android 7.0以上対応。</p>
         </div>
         <div class="phone-wrap" aria-hidden="true">
           <div class="phone">
             <div class="app-screen">
-              <div class="app-top">
-                <span>ホーム</span>
-                <span class="pill">肌診断</span>
-              </div>
-              <div class="score">
-                肌年齢
-                <strong>17歳</strong>
-                <div class="radar"></div>
-              </div>
+              <div class="app-top"><span>ホーム</span><span class="pill">肌診断</span></div>
+              <div class="score">肌年齢<strong>17歳</strong><div class="radar"></div></div>
               <div class="app-cta">撮影して診断する</div>
-              <div class="mini-chart">
-                <div class="chart-line"></div>
-              </div>
+              <div class="mini-chart"><div class="chart-line"></div></div>
             </div>
           </div>
         </div>
@@ -891,11 +710,7 @@
             <div class="mini-phone" aria-hidden="true">
               <div class="mini-phone-screen">
                 <div class="face-frame"></div>
-                <div class="result-lines">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
+                <div class="result-lines"><span></span><span></span><span></span></div>
               </div>
             </div>
             <div class="mock-copy">
@@ -905,44 +720,16 @@
           </article>
         </div>
         <div class="features">
-          <article class="feature">
-            <div class="feature-icon">AI</div>
-            <h3>顔写真で肌年齢診断</h3>
-            <p>インストール後すぐに撮影して、AIによる肌年齢の判定を確認できます。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon">部</div>
-            <h3>部位ごとの分析</h3>
-            <p>目元や頬など、気になる部位ごとの状態を細かくチェックできます。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon">線</div>
-            <h3>変化をグラフで実感</h3>
-            <p>肌年齢の推移をグラフで確認し、日々のケアによる変化を振り返れます。</p>
-          </article>
-          <article class="feature">
-            <div class="feature-icon">録</div>
-            <h3>肌の成長記録</h3>
-            <p>過去の診断履歴を残し、自分の肌の変化を継続的に見守れます。</p>
-          </article>
+          <article class="feature"><div class="feature-icon">AI</div><h3>顔写真で肌年齢診断</h3><p>インストール後すぐに撮影して、AIによる肌年齢の判定を確認できます。</p></article>
+          <article class="feature"><div class="feature-icon">部</div><h3>部位ごとの分析</h3><p>目元や頬など、気になる部位ごとの状態を細かくチェックできます。</p></article>
+          <article class="feature"><div class="feature-icon">線</div><h3>変化をグラフで実感</h3><p>肌年齢の推移をグラフで確認し、日々のケアによる変化を振り返れます。</p></article>
+          <article class="feature"><div class="feature-icon">録</div><h3>肌の成長記録</h3><p>過去の診断履歴を残し、自分の肌の変化を継続的に見守れます。</p></article>
         </div>
         <div class="phone-screens" aria-label="機能ごとのスマホ画面">
-          <figure class="phone-screen">
-            <img src="../assets/screenshots/screen-4.png" alt="肌年齢診断結果のスマホ画面">
-            <figcaption>肌年齢診断</figcaption>
-          </figure>
-          <figure class="phone-screen">
-            <img src="../assets/screenshots/screen-2.png" alt="部位ごとの分析を表示するスマホ画面">
-            <figcaption>部位別分析</figcaption>
-          </figure>
-          <figure class="phone-screen">
-            <img src="../assets/screenshots/screen-5.png" alt="肌年齢の変化をグラフで表示するスマホ画面">
-            <figcaption>推移グラフ</figcaption>
-          </figure>
-          <figure class="phone-screen">
-            <img src="../assets/screenshots/screen-1.png" alt="TrueSkinのスマホ画面">
-            <figcaption>診断履歴</figcaption>
-          </figure>
+          <figure class="phone-screen"><img src="../assets/screenshots/screen-4.png" alt="肌年齢診断結果のスマホ画面"><figcaption>肌年齢診断</figcaption></figure>
+          <figure class="phone-screen"><img src="../assets/screenshots/screen-2.png" alt="部位ごとの分析を表示するスマホ画面"><figcaption>部位別分析</figcaption></figure>
+          <figure class="phone-screen"><img src="../assets/screenshots/screen-5.png" alt="肌年齢の変化をグラフで表示するスマホ画面"><figcaption>推移グラフ</figcaption></figure>
+          <figure class="phone-screen"><img src="../assets/screenshots/screen-1.png" alt="TrueSkinのスマホ画面"><figcaption>診断履歴</figcaption></figure>
         </div>
       </div>
     </section>
@@ -953,23 +740,8 @@
           <h2>登録から診断までスムーズ。</h2>
           <p>GoogleまたはLINEアカウントで登録し、撮影、診断、記録までアプリ内で完結します。</p>
         </div>
-        <div class="steps">
-          <article class="step">
-            <h3>簡単登録</h3>
-            <p>Google、LINEアカウントで登録できます。</p>
-          </article>
-          <article class="step">
-            <h3>顔写真を撮影</h3>
-            <p>アプリの案内に沿って顔写真を撮影します。</p>
-          </article>
-          <article class="step">
-            <h3>AIが診断</h3>
-            <p>肌年齢と部位別の分析結果を確認できます。</p>
-          </article>
-          <article class="step">
-            <h3>変化を記録</h3>
-            <p>診断履歴とグラフで肌の変化を振り返れます。</p>
-          </article>
+        <div class="flow-hero-image">
+          <img src="../assets/step-flow-anime.png" alt="登録から診断までの流れ">
         </div>
       </div>
     </section>
@@ -978,18 +750,14 @@
       <div class="container">
         <div class="section-head">
           <h2>アプリ情報</h2>
-          <p>TrueSkinはNishimoto Worksが提供するAndroid向け肌診断アプリです。</p>
+          <p>TrueSkinは、肌の変化を日々の記録として残したい方向けの肌診断アプリです。</p>
         </div>
         <div class="info-grid">
           <div class="info-list">
-            <div class="info-item"><span>バージョン</span><strong>1.0.26</strong></div>
-            <div class="info-item"><span>最終更新日</span><strong>2026/02/21</strong></div>
-            <div class="info-item"><span>リリース日</span><strong>2026/02/20</strong></div>
-            <div class="info-item"><span>Android要件</span><strong>7.0以上</strong></div>
-            <div class="info-item"><span>ダウンロード</span><strong>100+件</strong></div>
-            <div class="info-item"><span>提供元</span><strong>Nishimoto Works</strong></div>
-            <div class="info-item"><span>価格</span><strong>アプリ内購入あり</strong></div>
-            <div class="info-item"><span>レーティング</span><strong>3歳以上</strong></div>
+            <div class="info-item"><span>アプリ名</span><strong>TrueSkin</strong></div>
+            <div class="info-item"><span>カテゴリ</span><strong>美容・肌診断</strong></div>
+            <div class="info-item"><span>対応OS</span><strong>Android 7.0以上</strong></div>
+            <div class="info-item"><span>iPhone版</span><strong>リリース準備中</strong></div>
           </div>
           <div class="notice">
             <strong>ご利用前に</strong><br>
@@ -1009,9 +777,9 @@
     <section class="cta">
       <div class="container">
         <h2>あなたの肌の変化を、今日から記録。</h2>
-        <p>Android版はGoogle Playで公開中。iPhone版は現在リリース準備中です。</p>
+        <p>まずはAndroid版で、肌年齢診断と記録を始められます。</p>
         <div class="hero-actions" style="justify-content:center">
-          <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.nishimotoworks.trueskin&amp;hl=ja">Google Playで見る</a>
+          <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.nishimotoworks.trueskin&amp;hl=ja">Android版をインストール</a>
           <span class="button button-disabled" aria-disabled="true">iPhone版 リリース準備中</span>
         </div>
       </div>
