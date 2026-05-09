@@ -128,8 +128,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, .9), transparent 28%),
-        linear-gradient(135deg, rgba(248, 217, 227, .9), rgba(255, 255, 255, .75) 48%, rgba(247, 194, 209, .72));
+        linear-gradient(90deg, rgba(255, 247, 249, .96) 0%, rgba(255, 247, 249, .88) 36%, rgba(255, 247, 249, .24) 64%, rgba(255, 247, 249, .04) 100%),
+        url("../assets/hero-scan.png") calc(100% + 220px) center / auto 118% no-repeat;
       z-index: -2;
     }
 
@@ -145,11 +145,16 @@
       z-index: -1;
     }
 
+    .hero-panel {
+      max-width: 650px;
+      padding: 34px 0;
+    }
+
     .hero-inner {
       width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(320px, .78fr);
+      grid-template-columns: minmax(0, 1.12fr) minmax(300px, .68fr);
       gap: 48px;
       align-items: center;
     }
@@ -194,6 +199,7 @@
       display: grid;
       place-items: center;
       min-height: 520px;
+      transform: translate(-72px, 34px);
     }
 
     .phone {
@@ -330,6 +336,168 @@
       gap: 16px;
     }
 
+    .phone-screens {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+      align-items: start;
+    }
+
+    .phone-screen {
+      margin: 0;
+      border-radius: 8px;
+      background: #fff7f8;
+      border: 1px solid var(--line);
+      padding: 18px 14px;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(102, 54, 69, .08);
+    }
+
+    .phone-screen img {
+      display: block;
+      width: min(166px, 100%);
+      margin: 0 auto;
+      aspect-ratio: 166 / 296;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(66, 41, 51, .18);
+    }
+
+    .phone-screen figcaption {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .photo-card {
+      min-height: 340px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .photo-card.main-photo {
+      background:
+        linear-gradient(90deg, rgba(55, 35, 43, .70), rgba(55, 35, 43, .24) 46%, rgba(55, 35, 43, .05)),
+        url("../assets/hero-scan.png") center / cover no-repeat;
+    }
+
+    .photo-card.mock-photo {
+      display: grid;
+      grid-template-columns: .72fr 1fr;
+      padding: 26px;
+      gap: 18px;
+      background:
+        linear-gradient(135deg, #fff8f9, #f8dbe4);
+    }
+
+    .photo-caption {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      max-width: 360px;
+      color: var(--white);
+    }
+
+    .photo-caption h3 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+
+    .photo-caption p {
+      margin: 10px 0 0;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, .86);
+    }
+
+    .mini-phone {
+      align-self: center;
+      justify-self: center;
+      width: min(150px, 100%);
+      aspect-ratio: 9 / 18.4;
+      border: 7px solid #2f2d31;
+      border-radius: 28px;
+      background: #fff8f9;
+      overflow: hidden;
+      box-shadow: 0 16px 38px rgba(70, 37, 50, .22);
+    }
+
+    .mini-phone-screen {
+      height: 100%;
+      padding: 28px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .face-frame {
+      height: 122px;
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 50% 34%, #f0c9bc 0 18px, transparent 19px),
+        radial-gradient(circle at 43% 31%, #3e2a28 0 3px, transparent 4px),
+        radial-gradient(circle at 57% 31%, #3e2a28 0 3px, transparent 4px),
+        linear-gradient(#f8d1c6 0 0) 50% 53% / 34px 32px no-repeat,
+        linear-gradient(180deg, #d9e1ec, #f8edf1);
+      position: relative;
+    }
+
+    .face-frame::after {
+      content: "";
+      position: absolute;
+      inset: 24px 20px 28px;
+      border: 2px solid rgba(255, 255, 255, .9);
+      border-radius: 999px;
+      box-shadow: 0 0 0 999px rgba(181, 75, 112, .11);
+    }
+
+    .result-lines {
+      display: grid;
+      gap: 6px;
+    }
+
+    .result-lines span {
+      height: 8px;
+      border-radius: 999px;
+      background: #ead3d9;
+    }
+
+    .result-lines span:nth-child(2) {
+      width: 78%;
+      background: #d69aaf;
+    }
+
+    .mock-copy {
+      align-self: center;
+    }
+
+    .mock-copy h3 {
+      margin: 0;
+      font-size: 27px;
+      line-height: 1.35;
+    }
+
+    .mock-copy p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
     .feature {
       min-height: 210px;
       border: 1px solid var(--line);
@@ -443,6 +611,21 @@
       line-height: 1.9;
     }
 
+    .policy-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .policy-links a,
+    .footer-links a {
+      color: var(--rose-deep);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     .cta {
       text-align: center;
       padding: 86px 0 96px;
@@ -469,6 +652,12 @@
       flex-wrap: wrap;
     }
 
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
     @media (max-width: 860px) {
       .nav-links a:not(.button) {
         display: none;
@@ -485,10 +674,13 @@
 
       .phone-wrap {
         min-height: auto;
+        transform: none;
       }
 
       .features,
       .steps,
+      .photo-strip,
+      .phone-screens,
       .info-grid {
         grid-template-columns: 1fr;
       }
@@ -499,6 +691,14 @@
 
       .feature {
         min-height: auto;
+      }
+
+      .photo-card {
+        min-height: 300px;
+      }
+
+      .phone-screens {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -527,8 +727,33 @@
         flex-direction: column;
       }
 
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(255, 247, 249, .94) 0%, rgba(255, 247, 249, .90) 48%, rgba(255, 247, 249, .55) 100%),
+          url("../assets/hero-scan.png") center top / cover no-repeat;
+      }
+
       .button {
         width: 100%;
+      }
+
+      .photo-card.mock-photo {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-screens {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-caption {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+      }
+
+      .photo-caption h3,
+      .mock-copy h3 {
+        font-size: 23px;
       }
 
       .info-list {
@@ -567,7 +792,7 @@
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-inner">
-        <div>
+        <div class="hero-panel">
           <p class="eyebrow">肌年齢診断AI・肌診断アプリ</p>
           <h1 id="hero-title">TrueSkin</h1>
           <p class="hero-copy">
@@ -609,6 +834,30 @@
           <h2>肌の状態を、ひと目で把握。</h2>
           <p>TrueSkinは、診断結果を数字とグラフで見える形にし、部位ごとの変化まで追えるように設計されています。</p>
         </div>
+        <div class="photo-strip">
+          <article class="photo-card main-photo">
+            <div class="photo-caption">
+              <h3>スマホをかざして、肌の変化を記録。</h3>
+              <p>いつもの洗顔後やスキンケア前に、顔写真から肌年齢をチェックできます。</p>
+            </div>
+          </article>
+          <article class="photo-card mock-photo">
+            <div class="mini-phone" aria-hidden="true">
+              <div class="mini-phone-screen">
+                <div class="face-frame"></div>
+                <div class="result-lines">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <div class="mock-copy">
+              <h3>撮影、分析、履歴までアプリ内で完結。</h3>
+              <p>診断画面やグラフを見ながら、肌の状態を継続的に確認できます。</p>
+            </div>
+          </article>
+        </div>
         <div class="features">
           <article class="feature">
             <div class="feature-icon">AI</div>
@@ -630,6 +879,24 @@
             <h3>肌の成長記録</h3>
             <p>過去の診断履歴を残し、自分の肌の変化を継続的に見守れます。</p>
           </article>
+        </div>
+        <div class="phone-screens" aria-label="機能ごとのスマホ画面">
+          <figure class="phone-screen">
+            <img src="../assets/screenshots/screen-4.png" alt="肌年齢診断結果のスマホ画面">
+            <figcaption>肌年齢診断</figcaption>
+          </figure>
+          <figure class="phone-screen">
+            <img src="../assets/screenshots/screen-2.png" alt="部位ごとの分析を表示するスマホ画面">
+            <figcaption>部位別分析</figcaption>
+          </figure>
+          <figure class="phone-screen">
+            <img src="../assets/screenshots/screen-5.png" alt="肌年齢の変化をグラフで表示するスマホ画面">
+            <figcaption>推移グラフ</figcaption>
+          </figure>
+          <figure class="phone-screen">
+            <img src="../assets/screenshots/screen-1.png" alt="TrueSkinのスマホ画面">
+            <figcaption>診断履歴</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -681,6 +948,13 @@
           <div class="notice">
             <strong>ご利用前に</strong><br>
             TrueSkinの診断結果は、スキンケアの参考情報として提供されるものです。医療行為、診断、治療を目的としたものではありません。肌に不安がある場合は、医療機関や専門家へご相談ください。
+            <br><br>
+            撮影または選択された画像は、画像解析および結果表示の目的で使用されます。写真や解析結果はサーバー上に保存されません。詳細はプライバシーポリシーをご確認ください。
+            <div class="policy-links">
+              <a href="https://nishimotoworks2025.github.io/privacy-policy-trueskin-ios/">プライバシーポリシー</a>
+              <a href="https://nishimotoworks2025.github.io/privacy-policy-trueskin-ios/contact.html">お問い合わせ</a>
+              <a href="https://nishimotoworks2025.github.io/privacy-policy-trueskin-ios/deletion.html">アカウント削除</a>
+            </div>
           </div>
         </div>
       </div>
@@ -700,7 +974,11 @@
   <footer class="footer">
     <div class="footer-inner">
       <span>&copy; Nishimoto Works</span>
-      <span>肌年齢診断AI・肌診断アプリ TrueSkin</span>
+      <div class="footer-links">
+        <a href="https://nishimotoworks2025.github.io/privacy-policy-trueskin-ios/">プライバシーポリシー</a>
+        <a href="https://nishimotoworks2025.github.io/privacy-policy-trueskin-ios/contact.html">お問い合わせ</a>
+        <a href="https://nishimotoworks2025.github.io/privacy-policy-trueskin-ios/deletion.html">アカウント削除</a>
+      </div>
     </div>
   </footer>
 </body>
