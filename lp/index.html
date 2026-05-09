@@ -114,6 +114,47 @@
       border-color: var(--line);
     }
 
+    .button-disabled {
+      color: #7f3c55;
+      background: #f7dbe4;
+      border-color: #d99aae;
+      box-shadow: none;
+      cursor: not-allowed;
+      opacity: .92;
+      pointer-events: none;
+    }
+
+    .button-disabled:hover {
+      transform: none;
+    }
+
+    .ios-notice {
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      background: #fff0f4;
+      border: 2px solid rgba(181, 75, 112, .38);
+      color: var(--rose-deep);
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.6;
+      box-shadow: 0 10px 24px rgba(181, 75, 112, .12);
+    }
+
+    .ios-notice span {
+      display: inline-grid;
+      place-items: center;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--rose);
+      font-size: 12px;
+    }
+
     .hero {
       min-height: calc(100svh - 68px);
       padding: 64px 0 48px;
@@ -800,10 +841,15 @@
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.nishimotoworks.trueskin&amp;hl=ja">Android版をインストール</a>
+            <span class="button button-disabled" aria-disabled="true">iPhone版 リリース準備中</span>
             <a class="button button-secondary" href="#features">機能を見る</a>
           </div>
+          <div class="ios-notice">
+            <span>iOS</span>
+            iPhone版は現在リリース準備中です。公開までしばらくお待ちください。
+          </div>
           <p class="store-note">
-            Android 7.0以上対応。iPhone版は準備中です。
+            Android 7.0以上対応。
           </p>
         </div>
         <div class="phone-wrap" aria-hidden="true">
@@ -963,9 +1009,10 @@
     <section class="cta">
       <div class="container">
         <h2>あなたの肌の変化を、今日から記録。</h2>
-        <p>Android版はGoogle Playで公開中。iPhone版は準備中です。</p>
+        <p>Android版はGoogle Playで公開中。iPhone版は現在リリース準備中です。</p>
         <div class="hero-actions" style="justify-content:center">
           <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.nishimotoworks.trueskin&amp;hl=ja">Google Playで見る</a>
+          <span class="button button-disabled" aria-disabled="true">iPhone版 リリース準備中</span>
         </div>
       </div>
     </section>
